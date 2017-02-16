@@ -18,17 +18,22 @@
 <div class="form-style-5">
     <fieldset>
         <legend><span class="number">-</span> Creative Info </legend>
-        <label >Input :</label>
+        <label >Asset(s) :</label>
             <div class="inputassets">
-            <input type="text" name="field1a" id="image1" placeholder="Image Url 1">
-            <input type="text" name="field1b" id="text1" placeholder="Text 1">
+            <input type="text" name="field1a" id="image1" placeholder="Image Url 1" value="http://localhost:8000/static/images/landscape.jpg">
+            <input type="text" name="field1b" id="text1" placeholder="Text 1" value="hello world">
+            <input type="submit" id="1" onclick="previewTemplatesForOneAsset(this.id)" value="Choose Template" />
+
             </div>
         <br>
-        <img style="width:40px;" src="{% static 'images/add.png' %}" id="add">
-        <img style="width:40px; float:right;" src="{% static 'images/minus.png' %}" id="remove">
+        <img style="width:30px;" src="{% static 'images/add.png' %}" id="add">
+        <img style="width:30px; float:right;" src="{% static 'images/minus.png' %}" id="remove">
         <br><br><br>
         <label >Audio Input:</label>
             <input type="text" name="field5" id="audio" placeholder="Audio Url *">
+
+        <label >Advertiser Icon URL:</label>
+        <input type="text" name="iconurl" id="iconurl" placeholder="Icon Url (32x32)" value="http://localhost:8000/static/images/inmobilogo.png">
 
         <input type="submit" onclick="previewTemplates()" value="Select Template" />
     </fieldset>
@@ -45,7 +50,7 @@
     </div>
 </div>
 </div>
-<div id="id01" class="modal">
+<div id="id02" class="modal">
     <div class="modal-content1 animate">
         <div class="imgcontainer">
             <y id="feedthanksa"><h4>Please select the image template</h4></y>
@@ -63,6 +68,7 @@
             <y id="cancel1b" style="display:none;">取消</y>
         </button>
     </div>
+</div>
 </div>
 </body>
 </html>
