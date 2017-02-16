@@ -7,7 +7,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -70,29 +69,34 @@ public class APIEntry {
         }
     }
 
+//    @POST
+//    @Path("/getImagesFiles")
+//    @Produces("text/plain")
+//    @Consumes("application/json")
+//    public Response postAPI(InputStream incomingData) {
+//        try {
+//            List<String> htmlFileNames = Utils.getHtmlFiles(incomingData);
+//            List<String> pngFiles = Utils.getImage(htmlFileNames);
+//            return Response.status(200).entity(pngFiles.toString()).build();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return Response.status(503).entity("Internal server error").build();
+//        }
+//    }
+
     @POST
-    @Path("/getPOST")
+    @Path("/getVideoFile")
     @Produces("text/plain")
     @Consumes("application/json")
-    public Response postAPI(InputStream incomingData) {
+    public Response getVideo(InputStream incomingData) {
         try {
-            System.out.println("API Post");
-            return Response.status(200).entity("[ API Post SUCCESS ]").build();
+            List<String> htmlFileNames = Utils.getHtmlFiles(incomingData);
+            List<String> pngFiles = Utils.getImage(htmlFileNames);
+            return Response.status(200).entity(pngFiles.toString()).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(503).entity("Internal server error").build();
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        List<String> htmlFiles = new ArrayList();
-        htmlFiles.add("/Users/yogeesh.rajendra/Desktop/test.html");
-//        htmlFiles.add("");
-//        htmlFiles.add("");
-
-        List<String> pngFiles = Utils.getImage(htmlFiles);
-        System.out.println(pngFiles);
-
     }
 
 
