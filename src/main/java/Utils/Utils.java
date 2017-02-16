@@ -15,8 +15,8 @@ public class Utils {
 
         UUID idS = UUID.randomUUID();
 
-        String [] dirs = {"/opt/spark/dump/"+idS, "/opt/spark/dump/"+idS+"/videos", "/opt/spark/dump/"+idS+"/audios",
-                "/opt/spark/dump/"+idS+"/images"};
+        String[] dirs = {"/opt/spark/dump/" + idS, "/opt/spark/dump/" + idS + "/videos", "/opt/spark/dump/" + idS + "/audios",
+                "/opt/spark/dump/" + idS + "/images"};
 
         for (String fileItem : dirs) {
             File dir = new File(fileItem);
@@ -30,7 +30,7 @@ public class Utils {
 
             UUID randId = UUID.randomUUID();
 
-            String imagefile = "/opt/spark/dump/"+idS+"/images/"+randId+"_pic"+(counter++)+".jpg";
+            String imagefile = "/opt/spark/dump/" + idS + "/images/" + randId + "_pic" + (counter++) + ".jpg";
 
             String command = "phantomjs /Users/yogeesh" +
                     ".rajendra/Documents/HUB/Personal/work/github/krazzy4/getscreenshot.js " + file + " " +
@@ -44,6 +44,7 @@ public class Utils {
         }
 
         return images;
+
     }
 
     /**
