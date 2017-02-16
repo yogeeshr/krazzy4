@@ -8,18 +8,16 @@ import java.util.List;
  */
 public class Utils {
 
-    public static List<String> getImage(List<String> htmlFiles) throws  Exception {
+    public static List<String> getImage(List<String> htmlFiles) throws Exception {
         List<String> images = new ArrayList<>();
-
-        for ( String file : htmlFiles ) {
+        for (String file : htmlFiles) {
             String command = "phantomjs /Users/yogeesh" +
-                    ".rajendra/Documents/HUB/Personal/work/github/krazzy4/getscreenshot.js "+file;
+                    ".rajendra/Documents/HUB/Personal/work/github/krazzy4/getscreenshot.js " + file;
             Process p = Runtime.getRuntime().exec(command);
             p.waitFor();
 
-            images.add(file+".png");
+            images.add(file + ".png");
         }
-
         return images;
     }
 }
