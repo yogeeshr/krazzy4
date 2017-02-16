@@ -19,6 +19,7 @@ public class APIEntry {
     static {
         File theDir = new File("/opt/spark");
         File theDir1 = new File("/opt/spark/dump");
+        File videoOutDir = new File("/opt/spark/video");
 
         // if the directory does not exist, create it
         if (!theDir.exists()) {
@@ -51,6 +52,21 @@ public class APIEntry {
             }
         }
 
+        // if the directory does not exist, create it
+        if (!videoOutDir.exists()) {
+            System.out.println("creating directory: /opt/spark/video");
+            boolean result = false;
+
+            try {
+                videoOutDir.mkdir();
+                result = true;
+            } catch (SecurityException se) {
+                //handle it
+            }
+            if (result) {
+                System.out.println("DIR created " + videoOutDir);
+            }
+        }
 
     }
 
