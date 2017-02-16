@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Images to Video - v1.0</title>
+    {% load staticfiles %}
+    <link href="{% static 'css/spark.css' %}" rel="stylesheet"/>
+
+</head>
+<body style="overflow:hidden;">
+<div class="container1">
+<div class="form-style-5">
+    <form>
+        <fieldset>
+            <legend><span class="number">1</span> Creative Info </legend>
+            <label for="job">Input 1:</label>
+            <input type="text" name="field1" placeholder="Image 1 *">
+            <input type="email" name="field2" placeholder="Text 1 *">
+            <label for="job">Input 2:</label>
+            <input type="text" name="field1" placeholder="Image 2 *">
+            <input type="email" name="field2" placeholder="Text 2 *">
+            <label for="job">Input 3:</label>
+            <input type="text" name="field1" placeholder="Image 3 *">
+            <input type="email" name="field2" placeholder="Text 3 *">
+            <label for="job">Input 4:</label>
+            <input type="text" name="field1" placeholder="Image 4 *">
+            <input type="email" name="field2" placeholder="Text 4 *">
+            <textarea name="field3" placeholder="About yourself"></textarea>
+            <select id="job" name="field4">
+                <optgroup label="Indoors">
+                    <option value="fishkeeping">Fishkeeping</option>
+                    <option value="reading">Reading</option>
+                    <option value="boxing">Boxing</option>
+                    <option value="debate">Debate</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="snooker">Snooker</option>
+                    <option value="other_indoor">Other</option>
+                </optgroup>
+                <optgroup label="Outdoors">
+                    <option value="football">Football</option>
+                    <option value="swimming">Swimming</option>
+                    <option value="fishing">Fishing</option>
+                    <option value="climbing">Climbing</option>
+                    <option value="cycling">Cycling</option>
+                    <option value="other_outdoor">Other</option>
+                </optgroup>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend><span class="number">2</span> Additional Info</legend>
+            <textarea name="field3" placeholder="About Your School"></textarea>
+        </fieldset>
+        <input type="submit" value="Apply" />
+    </form>
+</div>
+</div>
+
+</body>
+</html>
