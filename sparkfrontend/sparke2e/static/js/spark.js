@@ -2,7 +2,7 @@ var i=1;
 $(document).ready(function(){
   $("#add").click(function () {
     i++;
-    $(".inputassets").append('<input type="text" name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text">');
+    $("#singularasset").append('<div class="inputassets"><input type="text" name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"></div>');
     return false;
    });
 
