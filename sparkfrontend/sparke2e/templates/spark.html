@@ -14,38 +14,38 @@
     <h2><x id="englishhead" style="color:white;">MixMaster</x></h2>
 </div>
 <div class="maincontainer">
-<div class="container1">
-<div class="form-style-5">
-    <fieldset>
-        <legend><span class="number">-</span> Creative Info </legend>
-        <label >Asset(s)</label>
-        <div id="singularasset" class="asset">
-            <div class="inputassets">
-            <input type="text" name="field1a" id="image1" placeholder="Image Url 1">
-            <input type="text" name="field1b" id="text1" placeholder="Text 1">
-            </div>
-        <br>
-        </div>
-        <img style="width:40px;" src="{% static 'images/add.png' %}" id="add">
-        <img style="width:40px; float:right;" src="{% static 'images/minus.png' %}" id="remove">
-        <br><br><br>
-        <label >Audio Input:</label>
-            <input type="text" name="field5" id="audio" placeholder="Audio Url *">
+    <div class="container1">
+        <div class="form-style-5">
+            <fieldset>
+                <legend><span class="number">-</span> Creative Info </legend>
+                <label >Asset(s)</label>
+                <div id="singularasset" class="asset">
+                    <div class="inputassets">
+                        <input type="text" name="field1a" id="image1" placeholder="Image Url 1">
+                        <input type="text" name="field1b" id="text1" placeholder="Text 1">
+                    </div>
+                    <br>
+                </div>
+                <img style="width:40px;" src="{% static 'images/add.png' %}" id="add">
+                <img style="width:40px; float:right;" src="{% static 'images/minus.png' %}" id="remove">
+                <br><br><br>
+                <label >Audio Input:</label>
+                <input type="text" name="field5" id="audio" placeholder="Audio Url *">
 
-        <input type="submit" onclick="previewTemplates()" value="Select Template" />
-    </fieldset>
-</div>
-</div>
-<div class="container2" >
-    <div class="form-style-5">
-        <video width="470" height="480" controls>
-            <source src="{% static 'video/outputjava8thfeb.mp4' %}" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-            Your browser does not support the video tag.
-        </video>
-        <input style="margin-top:100px;" type="submit" onclick="previewTemplates()" value="Provide Video URL" />
+                <input type="submit" onclick="previewTemplates()" value="Select Template" />
+            </fieldset>
+        </div>
     </div>
-</div>
+    <div class="container2" >
+        <div class="form-style-5">
+            <video width="470" height="480" controls>
+                <source src="{% static 'video/outputjava8thfeb.mp4' %}" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+            <input style="margin-top:100px;" type="submit" onclick="previewTemplates()" value="Provide Video URL" />
+        </div>
+    </div>
 </div>
 <div id="id01" class="modal">
     <div class="modal-content1 animate">
@@ -55,16 +55,16 @@
         <x id="center" style="width:100%;" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/center.png' %}"></x><br><br>
         <x id="top" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/top.png' %}"></x><br><br>
         <x id="bottom" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/bottom.png' %}"></x><br><br>
-    <div class="containery" style="padding:10px;">
-        <button type="button" onclick="submitfeedback()" class="submitbtn">
-            <y id="submit1a">Submit</y>
-            <y id="submit1b" style="display:none;">提交</y>
-        </button>
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
-            <y id="cancel1a">Cancel</y>
-            <y id="cancel1b" style="display:none;">取消</y>
-        </button>
+        <div class="containery" style="padding:10px;">
+            <button type="button" onclick="submitfeedback()" class="submitbtn">
+                <y id="submit1a">Submit</y>
+                <y id="submit1b" style="display:none;">提交</y>
+            </button>
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
+                <y id="cancel1a">Cancel</y>
+                <y id="cancel1b" style="display:none;">取消</y>
+            </button>
+        </div>
     </div>
-</div>
 </body>
 </html>

@@ -1,17 +1,17 @@
 var i=1;
 $(document).ready(function(){
-    $("#add").click(function () {
-        i++;
-        $("#singularasset").append('<div class="inputassets"><input type="text" name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"></div>');
-        return false;
-    });
+  $("#add").click(function () {
+    i++;
+    $(".inputassets").append('<input type="text" style="margin-top: 25px;" name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text">');
+    return false;
+   });
 
-    $("#remove").click(function () {
-        document.getElementById('image'+i).remove()
-        document.getElementById('text'+i).remove();
-        i--;
-        return false;
-    });
+   $("#remove").click(function () {
+       document.getElementById('image'+i).remove()
+       document.getElementById('text'+i).remove();
+       i--;
+       return false;
+      });
 });
 function previewTemplates(){
     var x=1;

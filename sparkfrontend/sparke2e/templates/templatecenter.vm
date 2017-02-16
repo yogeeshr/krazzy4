@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>center text</title>
+      <style> div {position: relative; width: 480px; height: 320; } img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; opacity: 0.6; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } p{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 160px; text-shadow: 2px 2px 4px #000000; } </style>
+   </head>
+   <body>
+      <div>
+         <img class="ad" src="$image">
+         <img class="logo" src="$iconurl">
+         <p>$text</p>
+      </div>
+   </body>
+</html>
