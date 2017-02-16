@@ -1,44 +1,18 @@
 var i=1;
-var templatebottom = '<!DOCTYPE html> <html> <head> <title>bottom text</title> <style> div {position: relative; width: 480px; height: 320; } img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } p{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 21px; text-shadow: 2px 2px 4px #000000; } </style> </head> <body> <div> <img class="ad" src="$image"> <img class="logo" src="$iconurl"> <p>$text</p> </div> </body> </html>';
-var templatetop = '<!DOCTYPE html> <html> <head> <title>top text</title> <style> div {position: relative; width: 480px; height: 320; } img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } p{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; top: 0px; text-shadow: 2px 2px 4px #000000; } </style> </head> <body> <div> <img class="ad" src="$image"> <img class="logo" src="$iconurl"> <p>$text</p> </div> </body> </html>';
-var templatecenter = '<!DOCTYPE html> <html> <head> <title>center text</title> <style> div {position: relative; width: 480px; height: 320; } img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; opacity: 0.7; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } p{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 160px; text-shadow: 2px 2px 4px #000000; } </style> </head> <body> <div> <img class="ad" src="$image"> <img class="logo" src="$iconurl"> <p>$text</p> </div> </body> </html>';
-
 $(document).ready(function(){
-  $("#add").click(function () {
-    i++;
-    $(".inputassets").append('<div id="assetborder'+i+'" class="asset"><input type="text"  name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"></div>');
-    return false;
-   });
+    $("#add").click(function () {
+        i++;
+        $("#singularasset").append('<div class="inputassets"><input type="text" name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"></div>');
+        return false;
+    });
 
-   $("#remove").click(function () {
-    if(!(i<2)){
+    $("#remove").click(function () {
         document.getElementById('image'+i).remove()
-       document.getElementById('text'+i).remove();
-       document.getElementById('assetborder'+i).remove();
-       i--;
-    }
-    return false;
-   });
+        document.getElementById('text'+i).remove();
+        i--;
+        return false;
+    });
 });
-
-function previewTemplatesForOneAsset(id){
-    var logourl = document.getElementById("iconurl").value;
-    var imageurl = document.getElementById("image"+id).value;
-    var text = document.getElementById("text"+id).value;
-    var length = document.getElementById("image"+id).value.length;
-    var format = document.getElementById("image"+id).value.substring(document.getElementById("image"+id).value.length-3,document.getElementById("image"+id).value.length);
-    var formata = document.getElementById("image"+id).value.substring(document.getElementById("image"+id).value.length-4,document.getElementById("image"+id).value.length);
-
-    html1 = templatebottom.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
-    html2 = templatetop.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
-    html3 = templatecenter.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
-
-    var xyz='<div id="id01" class="modal"><div class="modal-content1 animate"><div class="imgcontainer"><y id="feedthanksa"><h4>Please select the image template</h4></y></div><x id="center" style="width:100%;" onclick="clicked(this.id)">'+html1+'</x><br><br><x id="top" onclick="clicked(this.id)">'+html2+'</x><br><br> <x id="bottom" onclick="clicked(this.id)">'+html3+'</x><br><br> <div class="containery" style="padding:10px;"> <button type="button" onclick="submitfeedback()" class="submitbtn"> <y id="submit1a">Submit</y> </button>  </div> </div>';
-    console.log(xyz);
-    $("body").append(xyz);
-    document.getElementById('id01').style.display='block';
-
-}
 function previewTemplates(){
     var x=1;
     var imageurl = [];
@@ -46,8 +20,6 @@ function previewTemplates(){
     var length = [];
     var urlsubstr = [];
     var urlasubstr = [];
-    var weight = i/100
-    var logourl = document.getElementById("iconurl").value;
     while(x<=i){
         imageurl.push(document.getElementById("image"+x).value);
         text.push(document.getElementById("text"+x).value);
@@ -56,14 +28,6 @@ function previewTemplates(){
         urlasubstr.push(document.getElementById("image"+x).value.substring(document.getElementById("image"+x).value.length-4,document.getElementById("image"+x).value.length));
         x++;
     }
-
-    html1 = templatebottom.replace("$text",text[0]).replace("$image",imageurl[0]).replace("$iconurl",logourl);
-    html2 = templatetop.replace("$text",text[1]).replace("$image",imageurl[1]).replace("$iconurl",logourl);
-    html3 = templatecenter.replace("$text",text[2]).replace("$image",imageurl[2]).replace("$iconurl",logourl);
-
-    alert(html1);
-    alert(html2);
-    alert(html3);
 //    alert(imageurl[0]);
 //    alert(text[0]);
 //
