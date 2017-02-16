@@ -2,13 +2,17 @@
 <html>
    <head>
       <title>bottom text</title>
-      <style> div {position: relative; width: 480px; height: 320; } img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } p{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 21px; text-shadow: 2px 2px 4px #000000; } </style>
+      <style>
+       #bottomdiv {position: relative; width: 480px; height: 320; }
+       img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; }
+       img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; }
+       #bottomtext{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 21px; text-shadow: 2px 2px 4px #000000; } </style>
    </head>
    <body>
-      <div>
+      <div id="bottomdiv">
          <img class="ad" src="$image">
          <img class="logo" src="$iconurl">
-         <p>$text</p>
+         <p id="bottomtext">$text</p>
       </div>
    </body>
 </html>

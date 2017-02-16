@@ -18,12 +18,16 @@
 <div class="form-style-5">
     <fieldset>
         <legend><span class="number">-</span> Creative Info </legend>
+        <label >Campaign Name :</label>
+            <input type="text" name="fieldxa" id="campaignname" placeholder="Campaign Name *" >
+        <br><br><br>
         <label >Asset(s) :</label>
             <div class="inputassets">
-            <input type="text" name="field1a" id="image1" placeholder="Image Url 1" value="http://localhost:8000/static/images/landscape.jpg">
-            <input type="text" name="field1b" id="text1" placeholder="Text 1" value="hello world">
-            <input type="submit" id="1" onclick="previewTemplatesForOneAsset(this.id)" value="Choose Template" />
-
+                <input type="text" name="field1a" id="image1" placeholder="Image Url 1" value="http://localhost:8000/static/images/landscape.jpg">
+                <input type="text" name="field1b" id="text1" placeholder="Text 1" value="hello world">
+                <div id="template1"></div>
+                <button class="buttonx" onclick="previewTemplatesForOneAsset(this.id)" id="1" type="submit" ><span><y id="btnlbla">Pick Template</y></span></button>
+            <!--<input  class="choosetemplate" id="1" onclick="previewTemplatesForOneAsset(this.id)" value="Choose Template" />-->
             </div>
         <br>
         <img style="width:30px;" src="{% static 'images/add.png' %}" id="add">
@@ -35,7 +39,7 @@
         <label >Advertiser Icon URL:</label>
         <input type="text" name="iconurl" id="iconurl" placeholder="Icon Url (32x32)" value="http://localhost:8000/static/images/inmobilogo.png">
 
-        <input type="submit" onclick="previewTemplates()" value="Select Template" />
+        <input type="submit" onclick="createVideo()" value="Kabooshhhhhh" />
     </fieldset>
 </div>
 </div>

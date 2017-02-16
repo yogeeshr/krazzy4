@@ -105,12 +105,13 @@ margin: 10px auto;
     text-align: center;
     font-style: normal;
     width: 100%;
-    border: 1px solid #16a085;
+    border: 1px solid rgba(9, 160, 131, 0.45)
     border-width: 1px 1px 3px;
     margin-bottom: 10px;
     margin-top:20px;
     border-radius: 40px;
 }
+
 .form-style-5 input[type="submit"]:hover,
 .form-style-5 input[type="button"]:hover
 {
@@ -134,9 +135,9 @@ margin: 10px auto;
 
 .modal-content1 {
     background-color: #F5F5DC;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: -3.5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 25%; /* Could be more or les, depending on screen size */
+    width: 40%; /* Could be more or les, depending on screen size */
 }
 .imgcontainer {
      text-align: center;
@@ -189,4 +190,51 @@ x{
    border-top: 1px solid lightgray;
    padding-top: 11px;
    margin-bottom: 10px;
+}
+
+.buttonx {
+    width: 35%;
+    display: block;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 13px;
+    position: relative;
+    border-radius: 30px;
+    border: none;
+    padding: 8px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-bottom: 10px;
+    /* margin: 5px; */
+    background-color: #1abc9c;
+}
+
+.buttonx span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonx span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttonx:hover span {
+  padding-right: 25px;
+}
+
+.buttonx:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.containery {
+  padding: 0 0 20 10;
 }

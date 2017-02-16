@@ -1,12 +1,13 @@
 var i=1;
-var templatebottom = '<!DOCTYPE html> <html> <head> <title>bottom text</title> <style> div {position: relative; width: 480px; height: 320; } img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } p{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 21px; text-shadow: 2px 2px 4px #000000; } </style> </head> <body> <div> <img class="ad" src="$image"> <img class="logo" src="$iconurl"> <p>$text</p> </div> </body> </html>';
-var templatetop = '<!DOCTYPE html> <html> <head> <title>top text</title> <style> div {position: relative; width: 480px; height: 320; } img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } p{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; top: 0px; text-shadow: 2px 2px 4px #000000; } </style> </head> <body> <div> <img class="ad" src="$image"> <img class="logo" src="$iconurl"> <p>$text</p> </div> </body> </html>';
-var templatecenter = '<!DOCTYPE html> <html> <head> <title>center text</title> <style> div {position: relative; width: 480px; height: 320; } img.ad{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; opacity: 0.7; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } p{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 160px; text-shadow: 2px 2px 4px #000000; } </style> </head> <body> <div> <img class="ad" src="$image"> <img class="logo" src="$iconurl"> <p>$text</p> </div> </body> </html>';
+var templatebottom = '<!DOCTYPE html> <html> <head> <title>bottom text</title> <style> #bottomdiv {margin: auto;position: relative; width: 480px; height: 320; } #bottomimg{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } #bottomtext{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 21px; text-shadow: 2px 2px 4px #000000; } </style>  <body> <div id="bottomdiv"> <img class="ad" id="bottomimg" src="$image"> <img class="logo" src="$iconurl"> <p id="bottomtext">$text</p> </div> </body> </html>';
+var templatetop = '<!DOCTYPE html> <html> <head> <title>top text</title> <style> #topdiv{margin: auto;position: relative; width: 480px; height: 320; } #topimg{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } #toptext{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; top: 0px; text-shadow: 2px 2px 4px #000000; } </style>  <body> <div id="topdiv"> <img class="ad" id="topimg" src="$image"> <img class="logo" src="$iconurl"> <p id="toptext">$text</p> </div> </body> </html>';
+var templatecenter = '<!DOCTYPE html> <html> <head> <title>center text</title> <style> #centerdiv {margin: auto;position: relative; width: 480px; height: 320; } #centerimg{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; opacity: 0.7; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } #centertext{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 160px; text-shadow: 2px 2px 4px #000000; } </style>  <body> <div id="centerdiv"> <img class="ad" id="centerimg" src="$image"> <img class="logo" src="$iconurl"> <p id="centertext">$text</p> </div> </body> </html>';
+var templatecenterhack = '<!DOCTYPE html> <html> <head> <title>center text</title> <style> #centerdiv {margin: auto;position: relative; width: 480px; height: 320; } #centerhackimg{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; opacity: 0.7; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } #centertext{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute;margin-bottom: 0px; bottom: 160px; text-shadow: 2px 2px 4px #000000; } </style> <body> <div id="centerdiv"> <img class="ad" id="centerhackimg" src="$image"> <img class="logo" src="$iconurl"> <p id="centertext" style="height: 15px;">$text</p> </div> </body> </html>';
 
 $(document).ready(function(){
   $("#add").click(function () {
     i++;
-    $(".inputassets").append('<div id="assetborder'+i+'" class="asset"><input type="text"  name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"></div>');
+    $(".inputassets").append('<div id="assetborder'+i+'" class="asset"><input type="text"  name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"><div id="template'+i+'"></div><button class="buttonx" onclick="previewTemplatesForOneAsset(this.id)" id="'+i+'" type="submit" ><span><y id="btnlbla">Pick Template</y></span></button></div>');
     return false;
    });
 
@@ -29,16 +30,23 @@ function previewTemplatesForOneAsset(id){
     var format = document.getElementById("image"+id).value.substring(document.getElementById("image"+id).value.length-3,document.getElementById("image"+id).value.length);
     var formata = document.getElementById("image"+id).value.substring(document.getElementById("image"+id).value.length-4,document.getElementById("image"+id).value.length);
 
-    html1 = templatebottom.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
-    html2 = templatetop.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
-    html3 = templatecenter.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
-
-    var xyz='<div id="id01" class="modal"><div class="modal-content1 animate"><div class="imgcontainer"><y id="feedthanksa"><h4>Please select the image template</h4></y></div><x id="center" style="width:100%;" onclick="clicked(this.id)">'+html1+'</x><br><br><x id="top" onclick="clicked(this.id)">'+html2+'</x><br><br> <x id="bottom" onclick="clicked(this.id)">'+html3+'</x><br><br> <div class="containery" style="padding:10px;"> <button type="button" onclick="submitfeedback()" class="submitbtn"> <y id="submit1a">Submit</y> </button>  </div> </div>';
-    console.log(xyz);
-    $("body").append(xyz);
-    document.getElementById('id01').style.display='block';
-
+    if(imageurl == "" || imageurl == null){
+        alert("Please input Image Url.")
+    }else if(text == "" || text == null){
+        alert("Please input text.")
+    }else if(!(format == "png" || format == "jpg" || formata == "jpeg" || format == "gif" ||
+         format == "svg" || formata == "apng" || format == "bmp")){
+            alert("Please check Image URL. Supported formats - PNG, JPG, JPEG, GIF, SVG, APNG, BMP");
+    }else{
+        html1 = templatebottom.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
+        html2 = templatetop.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
+        html3 = templatecenterhack.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
+        var modal='<div id="id'+id+'" class="modal"><div class="modal-content1 animate"><div class="imgcontainer"><y id="feedthanksa"><h4>Click on the template to select </h4></y></div><div class="containery" style="padding:10px;"><button type="button" style="border-radius:20px" onclick="closeModal('+id+')" class="cancelbtn">Cancel</button> </div><x id="Bottom" style="margin: auto;width:100%;" onclick="pickTemplate(this.id,'+id+')">'+html1+'</x><br><br><x id="Top" style="margin: auto;" onclick="pickTemplate(this.id,'+id+')">'+html2+'</x><br><br> <x id="Center" style="margin: auto;" onclick="pickTemplate(this.id,'+id+')">'+html3+'</x><br><br>  </div>';
+        $("body").append(modal);
+        document.getElementById('id'+id).style.display='block';
+    }
 }
+
 function previewTemplates(){
     var x=1;
     var imageurl = [];
@@ -61,9 +69,23 @@ function previewTemplates(){
     html2 = templatetop.replace("$text",text[1]).replace("$image",imageurl[1]).replace("$iconurl",logourl);
     html3 = templatecenter.replace("$text",text[2]).replace("$image",imageurl[2]).replace("$iconurl",logourl);
 
-    alert(html1);
-    alert(html2);
-    alert(html3);
+    document.getElementById('id01').style.display='block';
+}
+
+function pickTemplate(templateid,id){
+    if(document.getElementById('templateinput'+id) != null){
+        document.getElementById('templateinput'+id).remove();
+    }
+    var template='<input type="text" name="field'+id+'c" id="templateinput'+id+'" value="Template Picked : '+templateid+'">';
+    $("#template"+id).append(template);
+    document.getElementById('id'+id).style.display='none';
+}
+
+function closeModal(id){
+    document.getElementById('id'+id).style.display='none';
+}
+
+
 //    alert(imageurl[0]);
 //    alert(text[0]);
 //
@@ -108,11 +130,3 @@ function previewTemplates(){
 //    }else{
 //        document.getElementById('id01').style.display='block';
 //    }
-
-    document.getElementById('id01').style.display='block';
-}
-
-function clicked(param){
-    alert("hello");
-    alert(param);
-}
