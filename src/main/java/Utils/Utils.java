@@ -30,7 +30,7 @@ public class Utils {
 
             UUID randId = UUID.randomUUID();
 
-            String imagefile = "/opt/spark/dump/" + idS + "/images/" + randId + "_pic" + (counter++) + ".jpg";
+            String imagefile = "/opt/spark/dump/" + idS + "/images/" + "pic" + (counter++) + ".png";
 
             String command = "phantomjs /Users/yogeesh" +
                     ".rajendra/Documents/HUB/Personal/work/github/krazzy4/getscreenshot.js " + file + " " +
