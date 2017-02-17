@@ -111,7 +111,7 @@ function createVideo(){
     var total=0;
     for(k=1;k<=numberOfImages;k++){
         weight[k] = document.getElementById("weight"+k).value;;
-        total += weight[k];
+        total += parseInt(weight[k]);
         if(finalhtml[k] == null){
             alert("Please select Template for Image "+k);
             flag += 1;
@@ -122,15 +122,16 @@ function createVideo(){
         }
     }
     if(flag == 0){
+    alert(total);
         if(total != 100){
             alert("Total weight has to be 100%. Please update the weight inputs.")
         }else{
             data = [];
             data[0] = campaigname;
             data[1] = audiourl;
-            data[2] = iconurl;
-            data[3] = numberOfImages;
-            m=4;
+//            data[2] = iconurl;
+            data[2] = numberOfImages;
+            m=3;
             for(z=1;z<=numberOfImages;z++){
                 data[m] = finalhtml[z];
                 m++;
