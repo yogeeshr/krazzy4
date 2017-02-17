@@ -5,7 +5,7 @@
     <artifactId>Spark</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>genesysapi Maven Webapp</name>
+    <name>Spark Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
     <build>

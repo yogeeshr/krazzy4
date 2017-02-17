@@ -1,7 +1,9 @@
 package controller;
 
 import Utils.Utils;
+import model.Screen;
 import org.apache.log4j.Logger;
+import sparkvideo.WowVideo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -9,6 +11,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yogeesh.rajendra on 2/13/17.
@@ -23,7 +26,7 @@ public class APIEntry {
 
         // if the directory does not exist, create it
         if (!theDir.exists()) {
-            System.out.println("creating directory: /opt/spark");
+
             boolean result = false;
 
             try {
@@ -32,13 +35,11 @@ public class APIEntry {
             } catch (SecurityException se) {
                 //handle it
             }
-            if (result) {
-                System.out.println("DIR created");
-            }
+
         }
 
         if (!theDir1.exists()) {
-            System.out.println("creating directory: /opt/spark/dump");
+
             boolean result = false;
 
             try {
@@ -86,27 +87,56 @@ public class APIEntry {
         }
     }
 
+//    @POST
+//    @Path("/getImagesFiles")
+//    @Produces("text/plain")
+//    @Consumes("application/json")
+//    public Response postAPI(InputStream incomingData) {
+//        try {
+//            List<String> htmlFileNames = Utils.getHtmlFiles(incomingData);
+//            List<String> pngFiles = Utils.getImage(htmlFileNames);
+//            return Response.status(200).entity(pngFiles.toString()).build();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return Response.status(503).entity("Internal server error").build();
+//        }
+//    }
+
     @POST
-    @Path("/getPOST")
+    @Path("/getVideoFile")
     @Produces("text/plain")
     @Consumes("application/json")
-    public Response postAPI(InputStream incomingData) {
+    public Response getVideo(InputStream incomingData) {
         try {
-            System.out.println("API Post");
-            return Response.status(200).entity("[ API Post SUCCESS ]").build();
+            Map<String, Object> data = Utils.getHtmlFiles(incomingData);
+
+            String campaignName = (String) data.get("campaign_name");
+
+            System.out.println("Campaign Name : "+campaignName);
+
+            String audioUrl = (String) data.get("audio_url");
+
+            System.out.println("Audio Url : "+audioUrl);
+
+            List<String> pngFiles = Utils.getImage((List<String>) data.get("htmlFiles"), campaignName);
+
+            System.out.println("PNG Files : "+pngFiles);
+
+            //screen create
+            List<Screen> screens = new ArrayList<Screen>();
+
+            for(String image: pngFiles) {
+                screens.add(new Screen(image,0));
+            }
+
+
+            WowVideo.createWithOutWeight(screens, audioUrl, campaignName);
+
+            return Response.status(200).entity(pngFiles.toString()).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(503).entity("Internal server error").build();
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        List<String> htmlFiles = new ArrayList();
-        htmlFiles.add("/Users/krishna.tiwari/Desktop/test.html");
-//        htmlFiles.add("");
-//        htmlFiles.add("");
-        List<String> pngFiles = Utils.getImage(htmlFiles);
-        System.out.println(pngFiles);
     }
 
 

@@ -72,7 +72,7 @@ public class WowVideo {
         }
 
         try {
-            String output = "/opt/spark/dump/fk/video/" + campaignname + ".mp4";
+            String output = "/opt/spark/dump/"+campaignname+"/videos/" + campaignname + ".mp4";
             String cmd = "ffmpeg -r 1/5 -f concat -safe 0 -i " + imageFile.getAbsolutePath() + " -i " + mp3file + " -c:v libx264 -vf fps=25,format=yuv420p " + output;
             System.out.println(cmd);
             Process p = Runtime.getRuntime().exec(cmd);
