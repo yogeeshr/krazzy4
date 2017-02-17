@@ -1,8 +1,5 @@
 /nohupPid.txt
 **/.DS_Store
-restartserver.sh
-startserver.sh
-stopserver.sh
 *.pyc
 
 *.class
