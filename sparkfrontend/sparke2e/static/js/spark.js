@@ -1,4 +1,6 @@
 var i=1;
+var finalhtml = [];
+var html1, html2, html3;
 var templatebottom = '<!DOCTYPE html> <html> <head> <title>bottom text</title> <style> #bottomdiv {margin: auto;position: relative; width: 480px; height: 320; } #bottomimg{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } #bottomtext{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 21px; text-shadow: 2px 2px 4px #000000; } </style>  <body> <div id="bottomdiv"> <img class="ad" id="bottomimg" src="$image"> <img class="logo" src="$iconurl"> <p id="bottomtext">$text</p> </div> </body> </html>';
 var templatetop = '<!DOCTYPE html> <html> <head> <title>top text</title> <style> #topdiv{margin: auto;position: relative; width: 480px; height: 320; } #topimg{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } #toptext{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; top: 0px; text-shadow: 2px 2px 4px #000000; } </style>  <body> <div id="topdiv"> <img class="ad" id="topimg" src="$image"> <img class="logo" src="$iconurl"> <p id="toptext">$text</p> </div> </body> </html>';
 var templatecenter = '<!DOCTYPE html> <html> <head> <title>center text</title> <style> #centerdiv {margin: auto;position: relative; width: 480px; height: 320; } #centerimg{width: 480px; height: 320px; border-radius: 3%; position: relative; top: 0px; opacity: 0.7; } img.logo{bottom: 37px; height: 32px; left: 450px; position: relative; width: 32px; } #centertext{width: 480px; text-align: center; color: white; font-size: 25px; position: absolute; bottom: 160px; text-shadow: 2px 2px 4px #000000; } </style>  <body> <div id="centerdiv"> <img class="ad" id="centerimg" src="$image"> <img class="logo" src="$iconurl"> <p id="centertext">$text</p> </div> </body> </html>';
@@ -7,7 +9,7 @@ var templatecenterhack = '<!DOCTYPE html> <html> <head> <title>center text</titl
 $(document).ready(function(){
   $("#add").click(function () {
     i++;
-    $(".inputassets").append('<div id="assetborder'+i+'" class="asset"><input type="text"  name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"><div id="template'+i+'"></div><button class="buttonx" onclick="previewTemplatesForOneAsset(this.id)" id="'+i+'" type="submit" ><span><y id="btnlbla">Pick Template</y></span></button></div>');
+    $(".inputassets").append('<div id="assetborder'+i+'" class="asset"><input type="text"  name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"><input type="text" name="field'+i+'c" id="weight'+i+'" placeholder="Weight (in %)"><div id="template'+i+'"></div><button class="buttonx" onclick="previewTemplatesForOneAsset(this.id)" id="'+i+'" type="submit" ><span><y id="btnlbla">Pick Template</y></span></button></div>');
     return false;
    });
 
@@ -40,37 +42,38 @@ function previewTemplatesForOneAsset(id){
     }else{
         html1 = templatebottom.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
         html2 = templatetop.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
-        html3 = templatecenterhack.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
-        var modal='<div id="id'+id+'" class="modal"><div class="modal-content1 animate"><div class="imgcontainer"><y id="feedthanksa"><h4>Click on the template to select </h4></y></div><div class="containery" style="padding:10px;"><button type="button" style="border-radius:20px" onclick="closeModal('+id+')" class="cancelbtn">Cancel</button> </div><x id="Bottom" style="margin: auto;width:100%;" onclick="pickTemplate(this.id,'+id+')">'+html1+'</x><br><br><x id="Top" style="margin: auto;" onclick="pickTemplate(this.id,'+id+')">'+html2+'</x><br><br> <x id="Center" style="margin: auto;" onclick="pickTemplate(this.id,'+id+')">'+html3+'</x><br><br>  </div>';
+        html3 = templatecenter.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
+        html3hack = templatecenterhack.replace("$text",text).replace("$image",imageurl).replace("$iconurl",logourl);
+        var modal='<div id="id'+id+'" class="modal"><div class="modal-content1 animate"><div class="imgcontainer"><y id="feedthanksa"><h4>Click on the template to select </h4></y></div><div class="containery" style="padding:10px;"><button type="button" style="border-radius:20px" onclick="closeModal('+id+')" class="cancelbtn">Cancel</button> </div><x id="Bottom" style="margin: auto;width:100%;" onclick="pickTemplate(this.id,'+id+')">'+html1+'</x><br><br><x id="Top" style="margin: auto;" onclick="pickTemplate(this.id,'+id+')">'+html2+'</x><br><br> <x id="Center" style="margin: auto;" onclick="pickTemplate(this.id,'+id+')">'+html3hack+'</x><br><br>  </div>';
         $("body").append(modal);
         document.getElementById('id'+id).style.display='block';
     }
 }
 
-function previewTemplates(){
-    var x=1;
-    var imageurl = [];
-    var text = [];
-    var length = [];
-    var urlsubstr = [];
-    var urlasubstr = [];
-    var weight = i/100
-    var logourl = document.getElementById("iconurl").value;
-    while(x<=i){
-        imageurl.push(document.getElementById("image"+x).value);
-        text.push(document.getElementById("text"+x).value);
-        length.push(document.getElementById("image"+x).value.length);
-        urlsubstr.push(document.getElementById("image"+x).value.substring(document.getElementById("image"+x).value.length-3,document.getElementById("image"+x).value.length));
-        urlasubstr.push(document.getElementById("image"+x).value.substring(document.getElementById("image"+x).value.length-4,document.getElementById("image"+x).value.length));
-        x++;
-    }
-
-    html1 = templatebottom.replace("$text",text[0]).replace("$image",imageurl[0]).replace("$iconurl",logourl);
-    html2 = templatetop.replace("$text",text[1]).replace("$image",imageurl[1]).replace("$iconurl",logourl);
-    html3 = templatecenter.replace("$text",text[2]).replace("$image",imageurl[2]).replace("$iconurl",logourl);
-
-    document.getElementById('id01').style.display='block';
-}
+//function previewTemplates(){
+//    var x=1;
+//    var imageurl = [];
+//    var text = [];
+//    var length = [];
+//    var urlsubstr = [];
+//    var urlasubstr = [];
+//    var weight = i/100
+//    var logourl = document.getElementById("iconurl").value;
+//    while(x<=i){
+//        imageurl.push(document.getElementById("image"+x).value);
+//        text.push(document.getElementById("text"+x).value);
+//        length.push(document.getElementById("image"+x).value.length);
+//        urlsubstr.push(document.getElementById("image"+x).value.substring(document.getElementById("image"+x).value.length-3,document.getElementById("image"+x).value.length));
+//        urlasubstr.push(document.getElementById("image"+x).value.substring(document.getElementById("image"+x).value.length-4,document.getElementById("image"+x).value.length));
+//        x++;
+//    }
+//
+//    htmla1 = templatebottom.replace("$text",text[0]).replace("$image",imageurl[0]).replace("$iconurl",logourl);
+//    htmla2 = templatetop.replace("$text",text[1]).replace("$image",imageurl[1]).replace("$iconurl",logourl);
+//    htmla3 = templatecenter.replace("$text",text[2]).replace("$image",imageurl[2]).replace("$iconurl",logourl);
+//
+//    document.getElementById('id01').style.display='block';
+//}
 
 function pickTemplate(templateid,id){
     if(document.getElementById('templateinput'+id) != null){
@@ -78,6 +81,17 @@ function pickTemplate(templateid,id){
     }
     var template='<input type="text" name="field'+id+'c" id="templateinput'+id+'" value="Template Picked : '+templateid+'">';
     $("#template"+id).append(template);
+    switch(templateid) {
+        case "Bottom":
+                      finalhtml[id] = html1;
+                      break;
+        case "Top"   :
+                      finalhtml[id] = html2;
+                      break;
+        case "Center":
+                      finalhtml[id] = html3;
+                      break;
+    }
     document.getElementById('id'+id).style.display='none';
 }
 
@@ -85,6 +99,48 @@ function closeModal(id){
     document.getElementById('id'+id).style.display='none';
 }
 
+function createVideo(){
+
+    var campaigname = document.getElementById("campaignname").value;
+    var audiourl = document.getElementById("audio").value;
+    var iconurl = document.getElementById("iconurl").value;
+    var weight = [];
+    var numberOfImages = i;
+    var flag = 0;
+    var fixedWeight = (1/numberOfImages)*100;
+    var total=0;
+    for(k=1;k<=numberOfImages;k++){
+        weight[k] = document.getElementById("weight"+k).value;;
+        total += weight[k];
+        if(finalhtml[k] == null){
+            alert("Please select Template for Image "+k);
+            flag += 1;
+        }
+        if(weight[k] == null){
+            alert("Please enter weight (in %) for Image "+k);
+            flag += 1;
+        }
+    }
+    if(flag == 0){
+        if(total != 100){
+            alert("Total weight has to be 100%. Please update the weight inputs.")
+        }else{
+            data = [];
+            data[0] = campaigname;
+            data[1] = audiourl;
+            data[2] = iconurl;
+            data[3] = numberOfImages;
+            m=4;
+            for(z=1;z<=numberOfImages;z++){
+                data[m] = finalhtml[z];
+                m++;
+            }
+        }
+
+    }
+
+
+}
 
 //    alert(imageurl[0]);
 //    alert(text[0]);
