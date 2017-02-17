@@ -54,8 +54,7 @@
         <input style="margin-top:100px;" type="submit" onclick="previewTemplates()" value="Provide Video URL" />
     </div>
 </div>
-</div>
-<div id="id02" class="modal">
+<div id="id01" class="modal">
     <div class="modal-content1 animate">
         <div class="imgcontainer">
             <y id="feedthanksa"><h4>Please select the image template</h4></y>
@@ -63,17 +62,16 @@
         <x id="center" style="width:100%;" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/center.png' %}"></x><br><br>
         <x id="top" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/top.png' %}"></x><br><br>
         <x id="bottom" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/bottom.png' %}"></x><br><br>
-    <div class="containery" style="padding:10px;">
-        <button type="button" onclick="submitfeedback()" class="submitbtn">
-            <y id="submit1a">Submit</y>
-            <y id="submit1b" style="display:none;">提交</y>
-        </button>
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
-            <y id="cancel1a">Cancel</y>
-            <y id="cancel1b" style="display:none;">取消</y>
-        </button>
+        <div class="containery" style="padding:10px;">
+            <button type="button" onclick="submitfeedback()" class="submitbtn">
+                <y id="submit1a">Submit</y>
+                <y id="submit1b" style="display:none;">提交</y>
+            </button>
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
+                <y id="cancel1a">Cancel</y>
+                <y id="cancel1b" style="display:none;">取消</y>
+            </button>
+        </div>
     </div>
-</div>
-</div>
 </body>
 </html>

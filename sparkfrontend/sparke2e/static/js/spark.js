@@ -13,15 +13,12 @@ $(document).ready(function(){
     return false;
    });
 
-   $("#remove").click(function () {
-    if(!(i<2)){
+    $("#remove").click(function () {
         document.getElementById('image'+i).remove()
-       document.getElementById('text'+i).remove();
-       document.getElementById('assetborder'+i).remove();
-       i--;
-    }
-    return false;
-   });
+        document.getElementById('text'+i).remove();
+        i--;
+        return false;
+    });
 });
 
 function previewTemplatesForOneAsset(id){
@@ -122,7 +119,6 @@ function createVideo(){
         }
     }
     if(flag == 0){
-    alert(total);
         if(total != 100){
             alert("Total weight has to be 100%. Please update the weight inputs.")
         }else{
@@ -142,7 +138,6 @@ function createVideo(){
 
 
 }
-
 //    alert(imageurl[0]);
 //    alert(text[0]);
 //
