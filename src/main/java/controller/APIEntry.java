@@ -102,13 +102,11 @@ public class APIEntry {
 
     public static void main(String[] args) throws Exception {
         List<String> htmlFiles = new ArrayList();
-        htmlFiles.add("/Users/yogeesh.rajendra/Desktop/test.html");
+        htmlFiles.add("/Users/krishna.tiwari/Desktop/test.html");
 //        htmlFiles.add("");
 //        htmlFiles.add("");
-
         List<String> pngFiles = Utils.getImage(htmlFiles);
         System.out.println(pngFiles);
-
     }
 
 
