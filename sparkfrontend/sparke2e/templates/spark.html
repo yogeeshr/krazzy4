@@ -27,8 +27,8 @@
                 <input type="text" name="field1b" id="text1" placeholder="Text 1" value="hello world">
                 <input type="text" name="field1c" id="weight1" placeholder="Weight (in %)" value="25">
                 <div id="template1"></div>
-                <button class="buttonx" onclick="previewTemplatesForOneAsset(this.id)" id="1" type="submit" ><span><y id="btnlbla">Pick Template</y></span></button>
-            <!--<input  class="choosetemplate" id="1" onclick="previewTemplatesForOneAsset(this.id)" value="Choose Template" />-->
+                <button class="buttonx" onclick="previewTemplatesForOneAsset(this.id)" id="1" type="submit" ><span>
+                    <y id="btnlbla">Pick Template</y></span></button>
             </div>
         <br>
         <img style="width:30px;" src="{% static 'images/add.png' %}" id="add">
@@ -40,7 +40,7 @@
         <label >Advertiser Icon URL:</label>
         <input type="text" name="iconurl" id="iconurl" placeholder="Icon Url (32x32)" value="http://localhost:8000/static/images/inmobilogo.png">
 
-        <input type="submit" onclick="createVideo()" value="Kabooshhhhhh" />
+        <input type="submit" onclick="createVideo()" value="Generate Video" />
     </fieldset>
 </div>
 </div>
@@ -54,24 +54,6 @@
         <input style="margin-top:100px;" type="submit" onclick="previewTemplates()" value="Provide Video URL" />
     </div>
 </div>
-<div id="id01" class="modal">
-    <div class="modal-content1 animate">
-        <div class="imgcontainer">
-            <y id="feedthanksa"><h4>Please select the image template</h4></y>
-        </div>
-        <x id="center" style="width:100%;" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/center.png' %}"></x><br><br>
-        <x id="top" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/top.png' %}"></x><br><br>
-        <x id="bottom" onclick="clicked(this.id)"><img style="width:240px;height:160px;" src="{% static 'images/bottom.png' %}"></x><br><br>
-        <div class="containery" style="padding:10px;">
-            <button type="button" onclick="submitfeedback()" class="submitbtn">
-                <y id="submit1a">Submit</y>
-                <y id="submit1b" style="display:none;">提交</y>
-            </button>
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
-                <y id="cancel1a">Cancel</y>
-                <y id="cancel1b" style="display:none;">取消</y>
-            </button>
-        </div>
-    </div>
+</div>
 </body>
 </html>
