@@ -30,7 +30,7 @@ var imageWidth;
 $(document).ready(function(){
   $("#add").click(function () {
     i++;
-    $(".inputassets").append('<div id="assetborder'+i+'" class="asset"><input type="text"  name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"><input type="text" name="field'+i+'c" id="weight'+i+'" placeholder="Weight (in %)"><select id="positionid'+i+'"> <option id="0">Text Position</option> <option id="1">Top</option> <option id="2">Center</option> <option id="3">Bottom</option> </select><div id="template'+i+'"></div><button class="buttonx" onclick="previewTemplatesForOneAsset(this.id)" id="'+i+'" type="submit" ><span><y id="btnlbla">Preview</y></span></button></div>');
+    $(".inputassets").append('<div id="assetborder'+i+'" class="asset"><input type="text"  name="field'+i+'a" id="image'+i+'" placeholder="Image URL '+i+'"><input type="text" name="field'+i+'b" id="text'+i+'" placeholder="Text"><input type="text" name="field'+i+'c" id="weight'+i+'" placeholder="Weight (in %)"><select id="positionid'+i+'"> <option id="0">Text Position</option> <option id="1">Top</option> <option id="2">Center</option> <option id="3">Bottom</option> </select><button class="buttonx" onclick="previewTemplatesForOneAsset(this.id)" id="'+i+'" type="submit" ><span><y id="btnlbla">Preview</y></span></button></div>');
     return false;
    });
 
@@ -38,7 +38,6 @@ $(document).ready(function(){
         document.getElementById('image'+i).remove()
         document.getElementById('text'+i).remove();
         document.getElementById('weight'+i).remove();
-        document.getElementById('template'+i).remove();
         document.getElementById('positionid'+i).remove();
         document.getElementById('assetborder'+i).remove();
         document.getElementById(i).remove();
@@ -180,25 +179,25 @@ function selectTemplate(height,width, position, imageurl){
     }
 }
 
-function pickTemplate(templateid,id){
-    if(document.getElementById('templateinput'+id) != null){
-        document.getElementById('templateinput'+id).remove();
-    }
-    var template='<input type="text" name="field'+id+'c" id="templateinput'+id+'" value="Template Picked : '+templateid+'">';
-    $("#template"+id).append(template);
-    switch(templateid) {
-        case "Bottom":
-                      finalhtml[id] = html320x480;
-                      break;
-        case "Top"   :
-                      finalhtml[id] = html480x320;
-                      break;
-        case "Center":
-                      finalhtml[id] = html3;
-                      break;
-    }
-    document.getElementById('id'+id).style.display='none';
-}
+//function pickTemplate(templateid,id){
+//    if(document.getElementById('templateinput'+id) != null){
+//        document.getElementById('templateinput'+id).remove();
+//    }
+//    var template='<input type="text" name="field'+id+'c" id="templateinput'+id+'" value="Template Picked : '+templateid+'">';
+//    $("#template"+id).append(template);
+//    switch(templateid) {
+//        case "Bottom":
+//                      finalhtml[id] = html320x480;
+//                      break;
+//        case "Top"   :
+//                      finalhtml[id] = html480x320;
+//                      break;
+//        case "Center":
+//                      finalhtml[id] = html3;
+//                      break;
+//    }
+//    document.getElementById('id'+id).style.display='none';
+//}
 
 function closeModal(id){
     document.getElementById('id'+id).style.display='none';
