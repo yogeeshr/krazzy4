@@ -107,6 +107,50 @@ public class Utils {
         return data;
     }
 
+
+    /**
+     *
+     * @param incomingData
+     * @return
+     * @throws IOException
+     */
+    public static Map<String, Object> getHtmlFilesByString(String incomingData) throws IOException {
+        Map<String,Object> data = new HashMap<>();
+
+        String []data1 = incomingData.split("\\$");
+
+        List<String> htmlFiles = new ArrayList<>();
+
+        int ctr = 0;
+        String cmpName = "";
+        String audioUrl = "";
+
+        for ( String item : data1 ) {
+            //Campaign
+            if (ctr==0) {
+                cmpName = item;
+                data.put("campaign_name", cmpName);
+                ++ctr;
+                continue;
+            } else if (ctr==1) {
+                audioUrl  = item;
+                data.put("audio_url", audioUrl);
+                ++ctr;
+                continue;
+            }
+
+            String files[] = item.split("\\^");
+            htmlFiles.add(files[0]);
+            ++ctr;
+            //TODO : Factor in image weight
+        }
+
+
+        data.put("htmlFiles", htmlFiles);
+
+        return data;
+    }
+
     /**
      *
      * @param incomingData
@@ -115,6 +159,44 @@ public class Utils {
      */
     public static String getVideoPath(InputStream incomingData) throws  Exception{
         Map<String, Object> data = Utils.getHtmlFiles(incomingData);
+
+        String campaignName = (String) data.get("campaign_name");
+
+        System.out.println("Campaign Name : "+campaignName);
+
+        String audioUrl = (String) data.get("audio_url");
+
+        System.out.println("Audio Url : "+audioUrl);
+
+        List<String> pngFiles = Utils.getImage((List<String>) data.get("htmlFiles"), campaignName);
+
+        System.out.println("PNG Files : "+pngFiles);
+
+        //screen create
+        List<Screen> screens = new ArrayList<Screen>();
+
+        for(String image: pngFiles) {
+            screens.add(new Screen(image,0));
+        }
+
+        if (StringUtils.isBlank(audioUrl)) {
+            audioUrl = "http://freedownloadmobileringtones.com/wp-content/uploads/2014/09/starsports.com-Football-season-2014-TV-ad-song.mp3";
+        }
+
+        String video = WowVideo.createWithOutWeight(screens, audioUrl, campaignName);
+
+        return video;
+    }
+
+    /**
+     *
+     * @param incomingData
+     * @return
+     * @throws Exception
+     */
+    public static String getVideoPathByString(String incomingData) throws  Exception{
+
+        Map<String, Object> data = Utils.getHtmlFilesByString(incomingData);
 
         String campaignName = (String) data.get("campaign_name");
 

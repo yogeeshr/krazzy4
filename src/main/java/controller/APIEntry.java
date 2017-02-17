@@ -118,13 +118,21 @@ public class APIEntry {
     }
 
     @POST
-    @Path("/getVideoFile")
+    @Path("/getVideoFiles")
     @Produces("text/plain")
     @Consumes("application/json")
     public Response getVideos(InputStream incomingData) {
         try {
-            String video = Utils.getVideoPath(incomingData);
-            return Response.status(200).entity(video).build();
+            String video = Utils.getString(incomingData);
+
+            String videos[] = video.split("\\|");
+            String video1 = videos[0];
+            String video2 = videos[1];
+
+            String video1Str = Utils.getVideoPathByString(video1);
+            String video2Str = Utils.getVideoPathByString(video2);
+
+            return Response.status(200).entity(video1Str+"$"+video2Str).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(503).entity("Internal server error").build();
