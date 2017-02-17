@@ -125,7 +125,7 @@ public class APIEntry {
         try {
             String video = Utils.getString(incomingData);
 
-            String videos[] = video.split("\\|");
+            String videos[] = video.split("\\#");
             String video1 = videos[0];
             String video2 = videos[1];
 
