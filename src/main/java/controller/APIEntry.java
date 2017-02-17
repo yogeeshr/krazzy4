@@ -1,13 +1,17 @@
 package controller;
 
 import Utils.Utils;
+import model.Screen;
 import org.apache.log4j.Logger;
+import sparkvideo.WowVideo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yogeesh.rajendra on 2/13/17.
@@ -104,8 +108,30 @@ public class APIEntry {
     @Consumes("application/json")
     public Response getVideo(InputStream incomingData) {
         try {
-            List<String> htmlFileNames = Utils.getHtmlFiles(incomingData);
-            List<String> pngFiles = Utils.getImage(htmlFileNames);
+            Map<String, Object> data = Utils.getHtmlFiles(incomingData);
+
+            String campaignName = (String) data.get("campaign_name");
+
+            System.out.println("Campaign Name : "+campaignName);
+
+            String audioUrl = (String) data.get("audio_url");
+
+            System.out.println("Audio Url : "+audioUrl);
+
+            List<String> pngFiles = Utils.getImage((List<String>) data.get("htmlFiles"), campaignName);
+
+            System.out.println("PNG Files : "+pngFiles);
+
+            //screen create
+            List<Screen> screens = new ArrayList<Screen>();
+
+            for(String image: pngFiles) {
+                screens.add(new Screen(image,0));
+            }
+
+
+            WowVideo.createWithOutWeight(screens, audioUrl, campaignName);
+
             return Response.status(200).entity(pngFiles.toString()).build();
         } catch (Exception e) {
             e.printStackTrace();

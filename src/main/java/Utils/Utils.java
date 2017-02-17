@@ -1,19 +1,17 @@
 package Utils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by yogeesh.rajendra on 2/17/17.
  */
 public class Utils {
 
-    public static List<String> getImage(List<String> htmlFiles) throws Exception {
+    public static List<String> getImage(List<String> htmlFiles, String campaignName) throws Exception {
         List<String> images = new ArrayList<>();
 
-        UUID idS = UUID.randomUUID();
+        String idS = campaignName;
 
         String[] dirs = {"/opt/spark/dump/" + idS, "/opt/spark/dump/" + idS + "/videos", "/opt/spark/dump/" + idS + "/audios",
                 "/opt/spark/dump/" + idS + "/images"};
@@ -28,9 +26,7 @@ public class Utils {
         int counter = 0;
         for (String file : htmlFiles) {
 
-            UUID randId = UUID.randomUUID();
-
-            String imagefile = "/opt/spark/dump/" + idS + "/images/" + "pic" + (counter++) + ".png";
+            String imagefile = "/opt/spark/dump/" + idS + "/images/" + "pic" + (counter++) + ".jpg";
 
             String command = "phantomjs /Users/yogeesh" +
                     ".rajendra/Documents/HUB/Personal/work/github/krazzy4/getscreenshot.js " + file + " " +
@@ -53,7 +49,9 @@ public class Utils {
      * @return
      * @throws IOException
      */
-    public static List<String> getHtmlFiles(InputStream incomingData) throws IOException {
+    public static Map<String, Object> getHtmlFiles(InputStream incomingData) throws IOException {
+
+        Map<String,Object> data = new HashMap<>();
 
         StringBuilder input = new StringBuilder();
         String line = null;
@@ -70,14 +68,37 @@ public class Utils {
             return null;
         }
 
-        String []data = input.toString().split("\\$");
+        String []data1 = input.toString().split("\\$");
 
         List<String> htmlFiles = new ArrayList<>();
 
-        for ( String item : data ) {
-            htmlFiles.add(item);
+        int ctr = 0;
+        String cmpName = "";
+        String audioUrl = "";
+
+        for ( String item : data1 ) {
+            //Campaign
+            if (ctr==0) {
+                cmpName = item;
+                data.put("campaign_name", cmpName);
+                ++ctr;
+                continue;
+            } else if (ctr==1) {
+                audioUrl  = item;
+                data.put("audio_url", audioUrl);
+                ++ctr;
+                continue;
+            }
+
+            String files[] = item.split(":");
+            htmlFiles.add(files[0]);
+            ++ctr;
+            //TODO : Factor in image weight
         }
 
-        return htmlFiles;
+
+        data.put("htmlFiles", htmlFiles);
+
+        return data;
     }
 }
