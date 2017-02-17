@@ -2,6 +2,7 @@ package controller;
 
 import Utils.Utils;
 import model.Screen;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import sparkvideo.WowVideo;
 
@@ -108,31 +109,22 @@ public class APIEntry {
     @Consumes("application/json")
     public Response getVideo(InputStream incomingData) {
         try {
-            Map<String, Object> data = Utils.getHtmlFiles(incomingData);
+            String video = Utils.getVideoPath(incomingData);
+            return Response.status(200).entity(video).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(503).entity("Internal server error").build();
+        }
+    }
 
-            String campaignName = (String) data.get("campaign_name");
-
-            System.out.println("Campaign Name : "+campaignName);
-
-            String audioUrl = (String) data.get("audio_url");
-
-            System.out.println("Audio Url : "+audioUrl);
-
-            List<String> pngFiles = Utils.getImage((List<String>) data.get("htmlFiles"), campaignName);
-
-            System.out.println("PNG Files : "+pngFiles);
-
-            //screen create
-            List<Screen> screens = new ArrayList<Screen>();
-
-            for(String image: pngFiles) {
-                screens.add(new Screen(image,0));
-            }
-
-
-            WowVideo.createWithOutWeight(screens, audioUrl, campaignName);
-
-            return Response.status(200).entity(pngFiles.toString()).build();
+    @POST
+    @Path("/getVideoFile")
+    @Produces("text/plain")
+    @Consumes("application/json")
+    public Response getVideos(InputStream incomingData) {
+        try {
+            String video = Utils.getVideoPath(incomingData);
+            return Response.status(200).entity(video).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(503).entity("Internal server error").build();

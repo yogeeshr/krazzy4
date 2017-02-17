@@ -1,5 +1,10 @@
 package Utils;
 
+import model.Screen;
+import org.apache.commons.lang.StringUtils;
+import sparkvideo.WowVideo;
+
+import javax.ws.rs.core.Response;
 import java.io.*;
 import java.util.*;
 
@@ -101,4 +106,67 @@ public class Utils {
 
         return data;
     }
+
+    /**
+     *
+     * @param incomingData
+     * @return
+     * @throws Exception
+     */
+    public static String getVideoPath(InputStream incomingData) throws  Exception{
+        Map<String, Object> data = Utils.getHtmlFiles(incomingData);
+
+        String campaignName = (String) data.get("campaign_name");
+
+        System.out.println("Campaign Name : "+campaignName);
+
+        String audioUrl = (String) data.get("audio_url");
+
+        System.out.println("Audio Url : "+audioUrl);
+
+        List<String> pngFiles = Utils.getImage((List<String>) data.get("htmlFiles"), campaignName);
+
+        System.out.println("PNG Files : "+pngFiles);
+
+        //screen create
+        List<Screen> screens = new ArrayList<Screen>();
+
+        for(String image: pngFiles) {
+            screens.add(new Screen(image,0));
+        }
+
+        if (StringUtils.isBlank(audioUrl)) {
+            audioUrl = "http://freedownloadmobileringtones.com/wp-content/uploads/2014/09/starsports.com-Football-season-2014-TV-ad-song.mp3";
+        }
+
+        String video = WowVideo.createWithOutWeight(screens, audioUrl, campaignName);
+
+        return video;
+    }
+
+
+    /**
+     *
+     * @param incomingData
+     * @return
+     * @throws Exception
+     */
+    public static String getString(InputStream incomingData) throws Exception {
+        BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
+
+        StringBuilder input = new StringBuilder();
+        String line = null;
+
+        while ((line = in.readLine()) != null) {
+            input.append(line);
+        }
+
+        //If JSON is empty then throw bad request
+        if (input.length() <= 0) {
+            return null;
+        }
+
+        return input.toString();
+    }
+
 }
