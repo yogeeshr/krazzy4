@@ -42,9 +42,16 @@ def generate_video(request):
             url = fixedUrl + filename + '.html'
             imageasset = '$'+url+'^'+weight
             imageAssetCombined.append(imageasset);
-        finalOuput = ''.join(imageAssetCombined);
-        print finalOuput
-        response = "success"
+        finalOutput = ''.join(imageAssetCombined);
+        print finalOutput
+
+        # json_data = json.dumps(data)
+        headers = {'content-type': 'application/json'}
+        url = 'http://localhost:9099/Spark/api/getVideoFile'
+
+        response = requests.post(url, data=finalOutput, headers=headers)
+
+        print response
         return HttpResponse(response, content_type='application/json', status=200)
     except Exception as e:
         print 'exception : ',e
